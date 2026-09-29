@@ -1,192 +1,208 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy 21st Birthday Khushi!</title>
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;600;700&family=Fredoka+One&display=swap" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #ad1457;
-      min-height: 100vh;
-      overflow-x: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .screen { display: none; width: 100%; height: 100vh; justify-content: center; align-items: center; position: absolute; top:0; left:0; }
-    .active { display: flex; }
-
-    /* Scene 1: Dark Pink Cake Opening */
-    #scene1 {
-      background: #880e4f;
-      color: white;
-      flex-direction: column;
-      text-align: center;
-    }
-    .cake-icon { font-size: 80px; animation: pop 1s infinite alternate; cursor: pointer; }
-    @keyframes pop { 0% { transform: scale(1); } 100% { transform: scale(1.15); } }
-    .title-18 { font-family: 'Dancing Script', cursive; font-size: 2.8rem; margin-top: 15px; }
-
-    /* Scene 2: Main Grid Layout */
-    #scene2 {
-      background: #ffcdd2;
-      background-image: linear-gradient(#ef9a9a 1.5px, transparent 1.5px), linear-gradient(90deg, #ef9a9a 1.5px, transparent 1.5px);
-      background-size: 20px 20px;
-    }
-    .grid-card {
-      background: #ffe0b2;
-      background: rgba(255, 255, 255, 0.85);
-      border-radius: 25px;
-      padding: 30px;
-      width: 90%;
-      max-width: 800px;
-      display: flex;
-      flex-wrap: wrap;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-      align-items: center;
-      position: relative;
-    }
-    .grid-left { flex: 1; min-width: 260px; }
-    .grid-left h1 { font-family: 'Fredoka One', cursive; font-size: 3rem; color: #c2185b; line-height: 1; }
-    .badge { background: #e91e63; color: white; padding: 5px 15px; border-radius: 15px; font-weight: bold; display: inline-block; margin: 10px 0; }
-    .btn-pink { background: #ad1457; color: white; border: none; padding: 10px 18px; border-radius: 15px; cursor: pointer; font-weight: bold; margin-top: 5px; }
-    .grid-right { flex: 1; min-width: 260px; text-align: center; }
-    .profile-wrap { background: white; padding: 15px; border-radius: 25px; display: inline-block; border: 3px solid #f48fb1; }
-    .profile-img { width: 160px; height: 160px; border-radius: 50%; object-fit: cover; }
-    .profile-name { font-family: 'Dancing Script', cursive; font-size: 1.8rem; color: #880e4f; margin-top: 8px; }
-
-    /* Scene 3: Card Flip Popup */
-    .card-popup {
-      position: fixed;
-      background: #fff0f5;
-      border: 3px solid #e91e63;
-      padding: 25px;
-      border-radius: 20px;
-      width: 85%;
-      max-width: 420px;
-      text-align: center;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-      display: none;
-      z-index: 50;
-    }
-    .card-popup h3 { color: #c2185b; font-family: 'Dancing Script', cursive; font-size: 2rem; }
-    .card-popup p { color: #444; font-size: 0.95rem; margin: 12px 0; line-height: 1.5; }
-
-    /* Scene 4: Heart Drawing */
-    #scene4 { background: #880e4f; flex-direction: column; }
-    .heart-svg { width: 150px; height: 150px; }
-    .heart-path { stroke: #ff4081; stroke-width: 4; fill: none; stroke-dasharray: 1000; stroke-dashoffset: 1000; animation: drawHeart 2.5s forwards; }
-    @keyframes drawHeart { to { stroke-dashoffset: 0; fill: #e91e63; } }
-
-    /* Scene 5: Envelope Spread */
-    #scene5 {
-      background: #ad1457;
-      flex-direction: column;
-      color: white;
-    }
-    .envelope-box {
-      background: #fff;
-      color: #333;
-      padding: 25px;
-      border-radius: 15px;
-      width: 85%;
-      max-width: 400px;
-      text-align: center;
-      cursor: pointer;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    }
-    .notes-container { display: none; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 20px; max-width: 600px; }
-    .note-card { background: #fff0f5; color: #880e4f; padding: 12px; border-radius: 10px; border: 1px solid #f48fb1; font-size: 0.85rem; width: 160px; box-shadow: 0 4px 10px rgba(0,0,0,0.15); animation: scatter 0.5s ease-out; }
-    @keyframes scatter { from { transform: scale(0); } to { transform: scale(1); } }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Happy Birthday Khushi ❤️</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600;700&family=Lilita+One&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- SCENE 1 -->
-  <div class="screen active" id="scene1">
-    <div class="cake-icon" onclick="goToScene2()">🎂</div>
-    <div class="title-18">Happy 21st Birthday!</div>
-    <p style="font-family:'Dancing Script', cursive; font-size: 2rem; margin-top: 5px;">Khushi 💖</p>
-    <p style="font-size: 0.8rem; opacity: 0.8; margin-top: 20px;">(Tap the cake to open)</p>
+<section id="intro" class="screen intro active">
+  <div class="intro-bubbles"></div>
+  <div class="intro-confetti" id="introConfetti"></div>
+  <div class="cake-wrap">
+    <div class="cake-shadow"></div>
+    <div class="cake cake-bottom"><div class="icing"></div></div>
+    <div class="cake cake-top"><div class="icing"></div></div>
+    <div class="candle c1"><i></i></div>
+    <div class="candle c2"><i></i></div>
+    <div class="candle c3"><i></i></div>
   </div>
+  <div class="intro-caption">Happy 21st Birthday!<br><span>Khushi ❤️</span></div>
+</section>
 
-  <!-- SCENE 2 -->
-  <div class="screen" id="scene2">
-    <div class="grid-card">
-      <div class="grid-left">
-        <h1>Happy<br>Birthday</h1>
-        <div class="badge">30 Oct</div><br>
-        <button class="btn-pink" onclick="showLetterCard()">Click Here Khushi</button>
+<section id="home" class="screen home">
+  <div class="grid-bg"></div>
+  <div class="bunting top-left"></div><div class="bunting top-right"></div>
+  <div class="confetti" id="homeConfetti"></div>
+
+  <div class="decor balloon bl1"></div>
+  <div class="decor balloon bl2"></div>
+  <div class="decor balloon bl3"></div>
+  <div class="decor balloon br1"></div>
+  <div class="decor balloon br2"></div>
+
+  <div class="home-content">
+
+    <div class="headline">
+      <div class="happy">Happy <span class="hat">⌁</span></div>
+      <div class="birthday">Birthday</div>
+
+      <div class="date-pill">
+        <span>★</span><b>30 Sep</b><span>★</span>
       </div>
-      <div class="grid-right">
-        <div class="profile-wrap">
-          <img src="https://i.ibb.co/vvcgThDZ/image.png" class="profile-img" alt="Khushi">
-          <div class="profile-name">Dear Khushi</div>
-        </div>
+
+      <div class="tiny-actions">
+        <button id="openCard" class="pill-btn">💌 Click Here Khushi</button>
+        <button id="openLove" class="pill-btn">💗 From Rishabh</button>
       </div>
     </div>
 
-    <!-- Popup Card -->
-    <div class="card-popup" id="letterCard">
-      <h3>To You! 💌</h3>
-      <p>Happy Birthday, Khushi! ✨<br><br>From the moment we met, something in my life shifted. On your birthday, I just want you to know: you bring warmth, happiness, and joy into every chapter. Wishing you the happiest 21st Birthday!</p>
-      <button class="btn-pink" onclick="goToScene4()">Next Surprise ❤️</button>
-    </div>
-  </div>
+    <div class="portrait-area">
+      <div class="string s1"></div>
+      <div class="string s2"></div>
 
-  <!-- SCENE 4 -->
-  <div class="screen" id="scene4">
-    <svg class="heart-svg" viewBox="0 0 32 32">
-      <path class="heart-path" d="M16,28.22 C16,28.22 3,20 3,11 C3,6.5 6.5,3 11,3 C13.74,3 15.17,4.32 16,5.5 C16.83,4.32 18.26,3 21,3 C25.5,3 29,6.5 29,11 C29,20 16,28.22 16,28.22 Z"/>
-    </svg>
-    <p style="color: white; margin-top: 20px; font-weight: bold;">Loading Envelope Of Love...</p>
-  </div>
+      <div class="balloon mini-balloon p1"></div>
+      <div class="balloon mini-balloon p2"></div>
 
-  <!-- SCENE 5 -->
-  <div class="screen" id="scene5">
-    <div class="envelope-box" id="envBox" onclick="openEnvelopeNotes()">
-      <h3 style="color: #c2185b; font-family: 'Dancing Script', cursive; font-size: 2rem;">Envelope Of Love ✉️</h3>
-      <p style="font-size: 0.9rem; color: #666; margin-top: 5px;">Dear Khushi (Tap to Open)</p>
+      <div class="portrait-ring">
+        <img src="assets/khushi.jpg" alt="Khushi">
+      </div>
+
+      <div class="name-tag">Dear Khushi</div>
     </div>
 
-    <div class="notes-container" id="notesContainer">
-      <div class="note-card">"Since our first conversation, you've been the quiet spark that changed my world." 💖</div>
-      <div class="note-card">"One picture from you can change my whole day, my whole mood." 🌸</div>
-      <div class="note-card">"Every notification from you feels like a heartbeat whispering." ✨</div>
-      <div class="note-card">"Every moment with you is brighter, softer, and full of peace." 💕</div>
-    </div>
   </div>
 
-  <script>
-    function goToScene2() {
-      document.getElementById('scene1').classList.remove('active');
-      document.getElementById('scene2').classList.add('active');
-      confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
-    }
+  <button class="smile" id="smile">☺</button>
+  <button class="mail-corner" id="openLove2">✉</button>
+</section>
 
-    function showLetterCard() {
-      document.getElementById('letterCard').style.display = 'block';
-      confetti({ particleCount: 80, spread: 60 });
-    }
+<div id="cardOverlay" class="modal hidden">
 
-    function goToScene4() {
-      document.getElementById('scene2').classList.remove('active');
-      document.getElementById('scene4').classList.add('active');
-      setTimeout(function() {
-        document.getElementById('scene4').classList.remove('active');
-        document.getElementById('scene5').classList.add('active');
-      }, 3000);
-    }
+  <div class="modal-backdrop"></div>
 
-    function openEnvelopeNotes() {
-      document.getElementById('notesContainer').style.display = 'flex';
-      confetti({ particleCount: 150, spread: 90, origin: { y: 0.5 } });
-    }
-  </script>
+  <button class="modal-close" id="closeCard">×</button>
+
+  <div class="birthday-card" id="birthdayCard">
+
+    <div class="card-page card-cover">
+      <div class="star">★</div>
+      <div class="cover-small">Dear Khushi</div>
+      <div class="cover-title">Happy<br>Birthday!</div>
+      <div class="cover-sub">A surprise just for you... ❤️</div>
+
+      <img src="assets/khushi.jpg" alt="Khushi">
+
+      <div class="cover-circle">○</div>
+    </div>
+
+    <div class="card-page card-inside">
+
+      <div class="card-ribbon">To You!</div>
+      <div class="rule"></div>
+
+      <p><b>Happy Birthday, Khushi ❤️</b></p>
+
+      <p>
+        From the moment we met, something in my life shifted—like the universe quietly guiding me toward someone meant for me.
+      </p>
+
+      <p>
+        You brought warmth into the parts of me I didn't even know were cold, and you expanded my days with a dimension I can only call my own.
+      </p>
+
+      <p class="signature">Your Best Friend, Rishabh.</p>
+
+    </div>
+
+  </div>
+</div>
+
+<section id="transition" class="screen transition-screen">
+  <div class="transition-dots">◆</div>
+
+  <div class="shape-stage">
+    <span class="shape square"></span>
+    <span class="shape circle"></span>
+  </div>
+</section>
+
+<section id="love" class="screen love">
+
+  <div class="love-hearts" id="loveHearts"></div>
+
+  <div class="love-envelope" id="loveEnvelope">
+
+    <div class="env-top"></div>
+    <div class="env-left"></div>
+    <div class="env-right"></div>
+    <div class="env-bottom"></div>
+
+    <div class="env-label">
+      Envelope Of Love<br>
+      <span>Dear Khushi</span>
+    </div>
+
+    <button class="heart-open" id="openLetters">Open</button>
+
+  </div>
+</section>
+
+<section id="letters" class="screen letters">
+
+  <div class="love-hearts" id="letterHearts"></div>
+
+  <div class="big-envelope">
+
+    <div class="big-env-top"></div>
+    <div class="big-env-bottom"></div>
+    <div class="big-env-left"></div>
+    <div class="big-env-right"></div>
+
+    <div class="big-env-label">
+      Dear Khushi<br>
+      <b>Envelope Of Love</b>
+    </div>
+
+    <div class="inner-paper">♡</div>
+
+  </div>
+
+  <article class="letter l1">
+    Since our first conversation, you've been the quiet spark that changed my world, turning ordinary days into moments that feel beautifully meant to be.
+    <strong>Rishabh</strong>
+  </article>
+
+  <article class="letter l2">
+    Every notification from you feels like a heartbeat whispering, I'm here, and I love you.
+    <strong>Rishabh</strong>
+  </article>
+
+  <article class="letter l3">
+    One picture from you can change my whole day, my whole mood, my heartbeat.
+    <strong>Rishabh</strong>
+  </article>
+
+  <article class="letter l4">
+    Even through screens and pixels, your laugh reaches me like sunlight through a window—warm, real, and impossible to forget.
+    <strong>Rishabh</strong>
+  </article>
+
+  <article class="letter l5">
+    messages might travel through wires, but every word you send lands straight in my heart.
+    <strong>Rishabh</strong>
+  </article>
+
+  <article class="letter l6">
+    Ever since we met, my heart knew where it wanted to stay—with you, in every soft moment, every smile, every quiet piece of forever.
+    <strong>Rishabh</strong>
+  </article>
+
+  <article class="letter l7">
+    but you turned it into a memory my heart refuses to forget. Since then, every moment with you has felt softer, brighter, and filled with a kind of peace only you bring.
+    <strong>Rishabh</strong>
+  </article>
+
+</section>
+
+<audio id="music" src="assets/birthday.mp3" preload="auto"></audio>
+
+<script src="script.js"></script>
+
 </body>
 </html>
