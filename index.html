@@ -1,242 +1,191 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy 21st Birthday Khushi! 🎉</title>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <title>Happy 21st Birthday Khushi!</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;600;700&family=Fredoka+One&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #feada6 100%);
+      background: #ad1457;
       min-height: 100vh;
+      overflow-x: hidden;
       display: flex;
       justify-content: center;
       align-items: center;
-      overflow-x: hidden;
-      position: relative;
     }
 
-    /* Floating Balloons */
-    .balloon {
-      position: absolute;
-      bottom: -100px;
-      width: 40px;
-      height: 55px;
-      border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
-      animation: floatUp 8s infinite linear;
-      opacity: 0.8;
-      z-index: 1;
-    }
-    @keyframes floatUp {
-      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-      100% { transform: translateY(-120vh) rotate(20deg); opacity: 0; }
-    }
+    .screen { display: none; width: 100%; height: 100vh; justify-content: center; align-items: center; position: absolute; top:0; left:0; }
+    .active { display: flex; }
 
-    /* Main Container */
-    .card-container {
-      background: rgba(255, 255, 255, 0.9);
-      backdrop-filter: blur(10px);
+    /* Scene 1: Dark Pink Cake Opening */
+    #scene1 {
+      background: #880e4f;
+      color: white;
+      flex-direction: column;
+      text-align: center;
+    }
+    .cake-icon { font-size: 80px; animation: pop 1s infinite alternate; cursor: pointer; }
+    @keyframes pop { 0% { transform: scale(1); } 100% { transform: scale(1.15); } }
+    .title-18 { font-family: 'Dancing Script', cursive; font-size: 2.8rem; margin-top: 15px; }
+
+    /* Scene 2: Main Grid Layout */
+    #scene2 {
+      background: #ffcdd2;
+      background-image: linear-gradient(#ef9a9a 1.5px, transparent 1.5px), linear-gradient(90deg, #ef9a9a 1.5px, transparent 1.5px);
+      background-size: 20px 20px;
+    }
+    .grid-card {
+      background: #ffe0b2;
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 25px;
+      padding: 30px;
       width: 90%;
       max-width: 800px;
-      border-radius: 30px;
-      padding: 40px 20px;
-      box-shadow: 0 20px 50px rgba(233, 30, 99, 0.3);
-      text-align: center;
-      position: relative;
-      z-index: 10;
-      border: 3px solid #fff;
-      animation: popIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-    @keyframes popIn {
-      0% { transform: scale(0.6); opacity: 0; }
-      100% { transform: scale(1); opacity: 1; }
-    }
-
-    h1 {
-      font-family: 'Fredoka One', cursive;
-      font-size: 2.8rem;
-      color: #e91e63;
-      text-shadow: 2px 2px 0px #ffb6c1;
-      animation: glow 2s infinite alternate;
-    }
-    @keyframes glow {
-      from { text-shadow: 0 0 5px #fff, 0 0 10px #ff1493; }
-      to { text-shadow: 0 0 20px #fff, 0 0 30px #ff1493; }
-    }
-
-    .profile-card {
-      margin: 20px auto;
-      display: inline-block;
+      display: flex;
+      flex-wrap: wrap;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+      align-items: center;
       position: relative;
     }
-    .profile-img {
-      width: 170px;
-      height: 170px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 6px solid #e91e63;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-      transition: transform 0.4s ease;
-    }
-    .profile-img:hover {
-      transform: scale(1.08) rotate(3deg);
-    }
+    .grid-left { flex: 1; min-width: 260px; }
+    .grid-left h1 { font-family: 'Fredoka One', cursive; font-size: 3rem; color: #c2185b; line-height: 1; }
+    .badge { background: #e91e63; color: white; padding: 5px 15px; border-radius: 15px; font-weight: bold; display: inline-block; margin: 10px 0; }
+    .btn-pink { background: #ad1457; color: white; border: none; padding: 10px 18px; border-radius: 15px; cursor: pointer; font-weight: bold; margin-top: 5px; }
+    .grid-right { flex: 1; min-width: 260px; text-align: center; }
+    .profile-wrap { background: white; padding: 15px; border-radius: 25px; display: inline-block; border: 3px solid #f48fb1; }
+    .profile-img { width: 160px; height: 160px; border-radius: 50%; object-fit: cover; }
+    .profile-name { font-family: 'Dancing Script', cursive; font-size: 1.8rem; color: #880e4f; margin-top: 8px; }
 
-    /* Interactive Cake */
-    .cake-box {
-      margin: 20px auto;
-      cursor: pointer;
-      display: inline-block;
-    }
-    .cake {
-      font-size: 70px;
-      animation: bounce 1.5s infinite;
-    }
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-12px); }
-    }
-
-    .btn-surprise {
-      background: linear-gradient(45deg, #ff4081, #e91e63);
-      color: white;
-      border: none;
-      padding: 14px 32px;
-      font-size: 1.2rem;
-      font-weight: 700;
-      border-radius: 30px;
-      cursor: pointer;
-      box-shadow: 0 8px 20px rgba(233, 30, 99, 0.4);
-      transition: all 0.3s ease;
-      margin-top: 15px;
-    }
-    .btn-surprise:hover {
-      transform: translateY(-4px) scale(1.05);
-      box-shadow: 0 12px 25px rgba(233, 30, 99, 0.6);
-    }
-
-    /* Modal Popup */
-    .modal {
-      display: none;
+    /* Scene 3: Card Flip Popup */
+    .card-popup {
       position: fixed;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      background: #fff;
-      padding: 30px;
-      border-radius: 25px;
-      box-shadow: 0 25px 60px rgba(0,0,0,0.4);
-      z-index: 100;
-      max-width: 450px;
-      width: 85%;
-      text-align: center;
-      border: 4px solid #ff4081;
-      animation: modalOpen 0.4s ease;
-    }
-    @keyframes modalOpen {
-      from { opacity: 0; transform: translate(-50%, -60%) scale(0.8); }
-      to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-    }
-    .modal h2 {
-      color: #e91e63;
-      font-family: 'Fredoka One', cursive;
-      margin-bottom: 10px;
-    }
-    .modal p {
-      color: #444;
-      font-size: 1.05rem;
-      line-height: 1.6;
-    }
-    .close-btn {
-      background: #e91e63;
-      color: white;
-      border: none;
-      padding: 8px 22px;
+      background: #fff0f5;
+      border: 3px solid #e91e63;
+      padding: 25px;
       border-radius: 20px;
-      margin-top: 15px;
-      cursor: pointer;
-      font-weight: bold;
+      width: 85%;
+      max-width: 420px;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+      display: none;
+      z-index: 50;
     }
+    .card-popup h3 { color: #c2185b; font-family: 'Dancing Script', cursive; font-size: 2rem; }
+    .card-popup p { color: #444; font-size: 0.95rem; margin: 12px 0; line-height: 1.5; }
+
+    /* Scene 4: Heart Drawing */
+    #scene4 { background: #880e4f; flex-direction: column; }
+    .heart-svg { width: 150px; height: 150px; }
+    .heart-path { stroke: #ff4081; stroke-width: 4; fill: none; stroke-dasharray: 1000; stroke-dashoffset: 1000; animation: drawHeart 2.5s forwards; }
+    @keyframes drawHeart { to { stroke-dashoffset: 0; fill: #e91e63; } }
+
+    /* Scene 5: Envelope Spread */
+    #scene5 {
+      background: #ad1457;
+      flex-direction: column;
+      color: white;
+    }
+    .envelope-box {
+      background: #fff;
+      color: #333;
+      padding: 25px;
+      border-radius: 15px;
+      width: 85%;
+      max-width: 400px;
+      text-align: center;
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    .notes-container { display: none; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 20px; max-width: 600px; }
+    .note-card { background: #fff0f5; color: #880e4f; padding: 12px; border-radius: 10px; border: 1px solid #f48fb1; font-size: 0.85rem; width: 160px; box-shadow: 0 4px 10px rgba(0,0,0,0.15); animation: scatter 0.5s ease-out; }
+    @keyframes scatter { from { transform: scale(0); } to { transform: scale(1); } }
   </style>
 </head>
 <body>
 
-  <!-- Floating Balloons -->
-  <div class="balloon" style="left: 10%; background: #ff4081; animation-delay: 0s;"></div>
-  <div class="balloon" style="left: 30%; background: #ffeb3b; animation-delay: 2s;"></div>
-  <div class="balloon" style="left: 60%; background: #00e676; animation-delay: 4s;"></div>
-  <div class="balloon" style="left: 85%; background: #00bcd4; animation-delay: 1s;"></div>
+  <!-- SCENE 1 -->
+  <div class="screen active" id="scene1">
+    <div class="cake-icon" onclick="goToScene2()">🎂</div>
+    <div class="title-18">Happy 21st Birthday!</div>
+    <p style="font-family:'Dancing Script', cursive; font-size: 2rem; margin-top: 5px;">Khushi 💖</p>
+    <p style="font-size: 0.8rem; opacity: 0.8; margin-top: 20px;">(Tap the cake to open)</p>
+  </div>
 
-  <div class="card-container">
-    <h1>🎉 Happy 21st Birthday Khushi! 🎂</h1>
-    
-    <div class="profile-card">
-      <img src="https://i.ibb.co/vvcgThDZ/image.png" alt="Khushi" class="profile-img">
+  <!-- SCENE 2 -->
+  <div class="screen" id="scene2">
+    <div class="grid-card">
+      <div class="grid-left">
+        <h1>Happy<br>Birthday</h1>
+        <div class="badge">30 Oct</div><br>
+        <button class="btn-pink" onclick="showLetterCard()">Click Here Khushi</button>
+      </div>
+      <div class="grid-right">
+        <div class="profile-wrap">
+          <img src="https://i.ibb.co/vvcgThDZ/image.png" class="profile-img" alt="Khushi">
+          <div class="profile-name">Dear Khushi</div>
+        </div>
+      </div>
     </div>
 
-    <p style="font-size: 1.1rem; color: #555; font-weight: 600;">Tap the Birthday Cake to Blow Candles! 🕯️</p>
-
-    <div class="cake-box" onclick="blowCandles()">
-      <div class="cake" id="cakeEmoji">🎂</div>
-    </div>
-
-    <div>
-      <button class="btn-surprise" onclick="openMessage()">Open Birthday Wishes 💌</button>
+    <!-- Popup Card -->
+    <div class="card-popup" id="letterCard">
+      <h3>To You! 💌</h3>
+      <p>Happy Birthday, Khushi! ✨<br><br>From the moment we met, something in my life shifted. On your birthday, I just want you to know: you bring warmth, happiness, and joy into every chapter. Wishing you the happiest 21st Birthday!</p>
+      <button class="btn-pink" onclick="goToScene4()">Next Surprise ❤️</button>
     </div>
   </div>
 
-  <!-- Birthday Wish Modal -->
-  <div class="modal" id="wishModal">
-    <h2>Special Wish For Khushi ✨</h2>
-    <p>Dear Khushi,<br><br>Happy 21st Birthday! May your day be filled with endless smiles, fun, and sweetness. Wishing you success and happiness in everything you do! 💖</p>
-    <button class="close-btn" onclick="closeMessage()">Close 💕</button>
+  <!-- SCENE 4 -->
+  <div class="screen" id="scene4">
+    <svg class="heart-svg" viewBox="0 0 32 32">
+      <path class="heart-path" d="M16,28.22 C16,28.22 3,20 3,11 C3,6.5 6.5,3 11,3 C13.74,3 15.17,4.32 16,5.5 C16.83,4.32 18.26,3 21,3 C25.5,3 29,6.5 29,11 C29,20 16,28.22 16,28.22 Z"/>
+    </svg>
+    <p style="color: white; margin-top: 20px; font-weight: bold;">Loading Envelope Of Love...</p>
+  </div>
+
+  <!-- SCENE 5 -->
+  <div class="screen" id="scene5">
+    <div class="envelope-box" id="envBox" onclick="openEnvelopeNotes()">
+      <h3 style="color: #c2185b; font-family: 'Dancing Script', cursive; font-size: 2rem;">Envelope Of Love ✉️</h3>
+      <p style="font-size: 0.9rem; color: #666; margin-top: 5px;">Dear Khushi (Tap to Open)</p>
+    </div>
+
+    <div class="notes-container" id="notesContainer">
+      <div class="note-card">"Since our first conversation, you've been the quiet spark that changed my world." 💖</div>
+      <div class="note-card">"One picture from you can change my whole day, my whole mood." 🌸</div>
+      <div class="note-card">"Every notification from you feels like a heartbeat whispering." ✨</div>
+      <div class="note-card">"Every moment with you is brighter, softer, and full of peace." 💕</div>
+    </div>
   </div>
 
   <script>
-    // Trigger Confetti Fireworks on Load
-    window.onload = function() {
-      fireworks();
-    };
-
-    function fireworks() {
-      var duration = 3 * 1000;
-      var end = Date.now() + duration;
-
-      (function frame() {
-        confetti({
-          particleCount: 5,
-          angle: 60,
-          spread: 55,
-          origin: { x: 0 }
-        });
-        confetti({
-          particleCount: 5,
-          angle: 120,
-          spread: 55,
-          origin: { x: 1 }
-        });
-
-        if (Date.now() < end) {
-          requestAnimationFrame(frame);
-        }
-      }());
-    }
-
-    function blowCandles() {
-      document.getElementById('cakeEmoji').innerHTML = '🍰';
+    function goToScene2() {
+      document.getElementById('scene1').classList.remove('active');
+      document.getElementById('scene2').classList.add('active');
       confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
-      alert('Yay! Candles blown! Make a wish Khushi! ✨');
     }
 
-    function openMessage() {
-      document.getElementById('wishModal').style.display = 'block';
-      confetti({ particleCount: 120, spread: 80, origin: { y: 0.5 } });
+    function showLetterCard() {
+      document.getElementById('letterCard').style.display = 'block';
+      confetti({ particleCount: 80, spread: 60 });
     }
 
-    function closeMessage() {
-      document.getElementById('wishModal').style.display = 'none';
+    function goToScene4() {
+      document.getElementById('scene2').classList.remove('active');
+      document.getElementById('scene4').classList.add('active');
+      setTimeout(function() {
+        document.getElementById('scene4').classList.remove('active');
+        document.getElementById('scene5').classList.add('active');
+      }, 3000);
+    }
+
+    function openEnvelopeNotes() {
+      document.getElementById('notesContainer').style.display = 'flex';
+      confetti({ particleCount: 150, spread: 90, origin: { y: 0.5 } });
     }
   </script>
 </body>
