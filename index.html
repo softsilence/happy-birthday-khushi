@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy 21st Birthday Khushi!</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #ff69b4;
+      background-image: radial-gradient(#ff1493 15%, transparent 16%), radial-gradient(#ffb6c1 15%, transparent 16%);
+      background-size: 60px 60px;
+      background-position: 0 0, 30px 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    .grid-container {
+      background: #ffd1dc;
+      background-image: linear-gradient(#f8bbd0 1.5px, transparent 1.5px), linear-gradient(90deg, #f8bbd0 1.5px, transparent 1.5px);
+      background-size: 24px 24px;
+      width: 90%;
+      max-width: 850px;
+      border-radius: 25px;
+      padding: 35px 25px;
+      box-shadow: 0 15px 35px rgba(219, 112, 147, 0.5);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      align-items: center;
+      position: relative;
+      border: 4px solid #fff;
+    }
+    .left-section {
+      flex: 1;
+      min-width: 280px;
+      text-align: left;
+      padding: 10px;
+    }
+    .left-section h1 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 3.2rem;
+      color: #c2185b;
+      line-height: 1.1;
+      text-shadow: 3px 3px 0px #fff;
+    }
+    .date-badge {
+      background: #e91e63;
+      color: white;
+      padding: 6px 20px;
+      border-radius: 20px;
+      display: inline-block;
+      margin: 15px 0;
+      font-weight: 700;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+    .btn-container button {
+      background: #ad1457;
+      color: #fff;
+      border: 2px solid #fff;
+      padding: 12px 24px;
+      margin-top: 10px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 1rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+    }
+    .btn-container button:hover {
+      transform: translateY(-3px) scale(1.05);
+      background: #880e4f;
+    }
+    .right-section {
+      flex: 1;
+      min-width: 280px;
+      text-align: center;
+      padding: 10px;
+    }
+    .profile-card {
+      background: white;
+      padding: 20px;
+      border-radius: 30px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+      display: inline-block;
+      position: relative;
+      border: 3px solid #f48fb1;
+    }
+    .profile-img {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid #f48fb1;
+    }
+    .profile-name {
+      margin-top: 15px;
+      color: #880e4f;
+      font-weight: 700;
+      font-size: 1.4rem;
+      font-family: 'Fredoka One', cursive;
+    }
+    .envelope-modal {
+      display: none;
+      position: fixed;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      background: #fff0f5;
+      border: 4px solid #e91e63;
+      padding: 30px;
+      border-radius: 25px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      max-width: 450px;
+      width: 90%;
+      text-align: center;
+      z-index: 100;
+      animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    @keyframes popIn {
+      0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+      100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    }
+    .envelope-modal h3 {
+      color: #ad1457;
+      margin-bottom: 15px;
+      font-size: 1.6rem;
+      font-family: 'Fredoka One', cursive;
+    }
+    .envelope-modal p {
+      color: #444;
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+    .close-btn {
+      margin-top: 20px;
+      background: #e91e63;
+      color: white;
+      border: none;
+      padding: 10px 25px;
+      border-radius: 15px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="grid-container">
+    <div class="left-section">
+      <h1>Happy<br>21st Birthday!</h1>
+      <div class="date-badge">30 Sep</div>
+      <br>
+      <div class="btn-container">
+        <button onclick="openEnvelope()">Click Here Khushi 💌</button>
+      </div>
+    </div>
+
+    <div class="right-section">
+      <div class="profile-card">
+        <!-- Aapka ImgBB Direct Photo Link -->
+        <img src="https://i.ibb.co/vvcgThDZ/image.png" alt="Khushi Photo" class="profile-img">
+        <div class="profile-name">Dear Khushi 🎉</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="envelope-modal" id="envelopeModal">
+    <h3>Envelope Of Love 💖</h3>
+    <p>Dear Khushi,<br><br>Happy 21st Birthday! May your day be filled with endless joy, love, and happiness. Wishing you a fabulous year ahead filled with success and smiles! ✨</p>
+    <button class="close-btn" onclick="closeEnvelope()">Close</button>
+  </div>
+
+  <script>
+    function openEnvelope() {
+      document.getElementById('envelopeModal').style.display = 'block';
+    }
+    function closeEnvelope() {
+      document.getElementById('envelopeModal').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
